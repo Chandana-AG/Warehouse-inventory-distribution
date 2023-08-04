@@ -1,0 +1,1065 @@
+<!Doctype html>
+ 
+<html>
+ 
+    <head>
+        <link rel="shortcut icon" type="image/x-icon" href="warehouse logo.jpg">
+        <title>Warehouse Inventory Distribution</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link href="c.css" rel="stylesheet">
+    </head>
+ 
+    <body>
+
+        <nav>
+            <label class="logo">Warehouse Inventory Distribution</label>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index copy.html">Transporation problem calculator</a></li>
+                <li><a href="sample.html">Sampled sum</a></li>
+            </ul>
+        </nav><br/>
+       
+ 
+    <div id="main">
+ 
+        <div id="cls">
+ 
+            <h1>TRANSPORTATION PROBLEM </h1>            
+ 
+        </div>
+        <div style="color:white;"><br/>
+ 
+            <label>Enter number of Warehouse : </label>
+ 
+            <input type="number" id="rows"/><br/><br/>
+ 
+            <label>Enter number of Showroom : </label>
+ 
+            <input type="number" id="cols"/><br/><br/>
+ 
+            <input type="button" id="display_matrix" value="Get Matrix For Entering Data" /><br/><br/>
+ 
+        </div>
+ 
+        <div id="dataMatrix">
+ 
+        </div><br/>
+
+        <div id="resultBtn" style="display: none;">
+ 
+            <input type="button" id="getResult" value="Generate Result" />
+ 
+        </div>
+ 
+ 
+ 
+        <div id="result">
+ 
+        </div>
+ 
+        <div id="result2">
+ 
+        </div><br/><br/>
+ 
+        </div>
+ 
+        <script>
+ 
+            $(document).ready(function() {
+ 
+                $("#display_matrix").click(function(){
+ 
+ 
+ 
+                   rows=parseInt($("#rows").val());
+ 
+                   cols=parseInt($("#cols").val());
+ 
+                   var k=0;
+ 
+                    var genTable;
+ 
+                    genTable="<table id='table1'>";
+ 
+                    $("#dataMatrix").html(genTable);
+ 
+                    for (var i = 0; i < (rows+1); i++) {
+ 
+                        genTable='<tr id=\"row'+i+'\"></tr>';
+ 
+                        $("#dataMatrix").append(genTable);
+ 
+                        for (var j = 0; j < (cols+1); j++) {
+ 
+                            if(i==0 && j==0) {
+ 
+                                genTable='<td>Warehouse\\Showroom</td>';
+ 
+                            }else if(i==0) {
+ 
+                                genTable='<td>Showroom '+(j)+'</td>';
+ 
+                            }else if(j==0) {
+ 
+                                genTable='<td>Warehouse '+(i)+'</td>';
+ 
+                            }else {
+ 
+                                genTable='<td id=\"col'+k+'\"><input class=\"inTable\" type=\"text\" id=\"data'+k+'\"></input></td>';
+ 
+                                k++;
+ 
+                            }
+ 
+                           
+ 
+                            $("#row"+i).append(genTable);
+ 
+                        }
+ 
+                       
+ 
+                    }
+ 
+                    genTable="</table>"
+ 
+                    $("#dataMatrix").append("<br/><b style='color:white;'>Give Supply and Demand so that sum of both should be equal :</b> <br/>");
+ 
+                    $("#dataMatrix").append("<br/><b style='color:white;'>Give Supply :</b> ");
+ 
+                    genTable = "<table id = 'table2'>";
+ 
+                        var m =0;
+ 
+                        $("#dataMatrix").append(genTable);
+ 
+                        for(var i =0;i<1;i++){
+ 
+                            genTable='<tr id=\"row1'+i+'\"></tr>';
+ 
+                            $("#dataMatrix").append(genTable);
+ 
+                            for(var j =0;j<rows;j++){
+ 
+                            genTable='<td id=\"supply'+k+'\"><input class=\"inTable\" type=\"text\" id=\"supply'+m+'\"></input></td>';
+ 
+                                m++;
+ 
+                                $("#row1"+i).append(genTable);
+ 
+                        }
+ 
+                    }genTable="</table>"
+ 
+                    $("#dataMatrix").append("<br/><b style='color:white;'>Give Demand :</b>"); genTable = "<table id = 'table2'>";
+ 
+                        var m =0;
+ 
+                        $("#dataMatrix").append(genTable);
+ 
+                        for(var i =0;i<1;i++){
+ 
+                            genTable='<tr id=\"row8'+i+'\"></tr>';
+ 
+                            $("#dataMatrix").append(genTable);
+ 
+                            for(var j =0;j<cols;j++){
+ 
+                            genTable='<td id=\"demand'+k+'\"><input class=\"inTable\" type=\"text\" id=\"demand'+m+'\"></input></td>';
+ 
+                                m++;
+ 
+                                $("#row8"+i).append(genTable);
+ 
+                        }
+ 
+                    }genTable=='</table>';
+ 
+ 
+ 
+                    $("#resultBtn").css("display","inline-block");
+ 
+                    });
+ 
+                    $("#getResult").click(function(){
+ 
+                        data = new Array(cols);
+ 
+                    for (var i = 0;i< rows;i++){
+ 
+                        data[i] = new Array(rows);
+ 
+                       
+ 
+                    }
+ 
+                    var k=0;
+ 
+                    for (var i = 0; i < rows; i++) {
+ 
+                        for (var j = 0; j < cols; j++) {
+ 
+                            data[i][j]=parseInt($("#data"+k).val());
+ 
+                            k++;
+ 
+                        }
+ 
+                       
+ 
+                    }
+ 
+                    $("#result").html("<br/><b style='color:white;'>Given input is :</b> <br/><br/>");
+ 
+ 
+ 
+                    var table='<table id="table2">';
+ 
+                        $("#result").append(table);
+ 
+                    for (var i = 0; i < rows; i++) {
+ 
+                        table='<tr id=\"row2'+i+'\"></tr>';
+ 
+                        $("#result").append(table);
+ 
+                        for (var j = 0; j < cols; j++) {
+ 
+                            var printValue;
+ 
+                           
+ 
+                                table='<td>' + data[i][j]+ '</td>';
+ 
+                           
+ 
+                                                   
+ 
+                            $("#row2"+i).append(table);
+ 
+                        }
+ 
+                    }
+ 
+                    table='</table>';
+ 
+                    $("#result").append(table);
+ 
+                    supply=new Array();
+ 
+                    var l =0
+ 
+                    for(var i =0;i<rows;i++){
+ 
+                        supply.push($("#supply"+l).val())
+ 
+                        l++;
+ 
+                    }
+ 
+                    var sumsupply=0;
+ 
+                    for(var i =0;i<supply.length;i++){
+ 
+                        sumsupply= sumsupply+parseInt(supply[i]);
+ 
+                    }
+ 
+                    demand=new Array();
+ 
+                    var l =0
+ 
+                    for(var i =0;i<cols;i++){
+ 
+                        demand.push($("#demand"+l).val())
+ 
+                        l++;
+ 
+                    }
+ 
+                    var sumdemand=0;
+ 
+                    for(var i =0;i<demand.length;i++){
+ 
+                        sumdemand= sumdemand+parseInt(demand[i]);
+ 
+                    }
+ 
+                    var grid = new Array();
+ 
+                    for(var i=0;i<rows;i++){
+ 
+                        grid[i]= new Array();
+ 
+                    }
+ 
+                    for (var i = 0; i < rows; i++) {
+ 
+                        for (var j = 0; j < cols; j++) {
+ 
+                            grid[i][j]=data[i][j];
+ 
+                        }
+ 
+                    }
+ 
+                    if(sumsupply==sumdemand){
+ 
+                        let startR = 0; // start row
+ 
+                        let startC = 0; // start col
+ 
+                        let ans = 0;
+ 
+                        var count =0
+ 
+                        var nw = new Array();
+ 
+                        for(var i =0;i<rows;i++){
+ 
+                            nw[i]= new Array();
+ 
+                        }while (startR !== grid.length && startC !== grid[0].length)
+ 
+                        {
+ 
+                         
+ 
+                        // if demand is greater than supply
+ 
+                        if (parseInt(supply[startR]) <= parseInt(demand[startC]))
+ 
+                        {
+ 
+                            ans += supply[startR] * grid[startR][startC];
+ 
+                            if(supply[startR]!=0){
+ 
+                            nw[startR][startC]=(supply[startR]);
+ 
+                            count +=1;
+ 
+                            }
+ 
+                           
+ 
+                            // subtract the value of supply from the demand
+ 
+                            demand[startC] -= supply[startR];
+ 
+                            startR += 1;
+ 
+                        }
+ 
+                         
+ 
+                          // if supply is greater than demand
+ 
+                        else
+ 
+                        {
+ 
+                            ans += demand[startC] * grid[startR][startC];
+ 
+                            if(demand[startC]!=0){
+ 
+                            nw[startR][startC]=(demand[startC]);
+ 
+                            count+=1;
+ 
+                            }
+ 
+                           
+ 
+                            // subtract the value of demand from the supply
+ 
+                            supply[startR] -= demand[startC];
+ 
+                            startC += 1;
+ 
+                        }
+ 
+                        }var nw1 = new Array();
+ 
+                        for(var i=0;i<rows;i++){
+ 
+                            nw1[i] = new Array();
+ 
+                        }  
+ 
+                        var h =0;                
+ 
+                        for(var i =0;i<rows;i++){
+ 
+                            for(var j=0;j<cols;j++){
+ 
+                                if(nw[i][j]==undefined){
+ 
+                                    nw1[i][j] = h;
+ 
+                                }
+ 
+                                else{
+ 
+                                    nw1[i][j]= parseInt(nw[i][j]);
+ 
+                                }
+ 
+                            }
+ 
+                        }
+ 
+                        var bfs = [];
+ 
+                        for(var i =0;i<rows;i++){
+ 
+                            for(var j=0;j<cols;j++){
+ 
+                                if(nw[i][j]!=undefined){
+ 
+                                    bfs.push([i,j,nw[i][j]])
+ 
+                                }
+ 
+                               
+ 
+                            }
+ 
+                        }
+ 
+                        $("#result").append("<br/><b style='color:white;'>Result is :</b> <br/><br/>");
+ 
+                        var printValue =0;
+ 
+                        var table='<table id="table3">';
+ 
+                            $("#result").append(table);
+ 
+                        for (var i = 0; i < rows; i++) {
+ 
+                            table='<tr id=\"row3'+i+'\"></tr>';
+ 
+                            $("#result").append(table);
+ 
+                            for (var j = 0; j < cols; j++) {
+ 
+                               
+ 
+                               
+ 
+                                    table='<td>' + nw1[i][j]+ '</td>';                                      
+ 
+                                $("#row3"+i).append(table);
+ 
+                            }
+ 
+                        }
+ 
+                        table='</table>';
+ 
+                        $("#result").append("</br></br><b style='color:white;'>The initial feasible basic solution is </b>" + ans);
+                        function optimal(nw1,data){
+                            var u = new Array(rows).fill(null);
+                            var v = new Array(cols).fill(null);
+                            u[0]=0;
+                                    for(var i=0;i<rows;i++){
+                                        for(var j=0;j<cols;j++){
+                                            if(nw1[i][j]!=0){
+                                                var cost= data[i][j];
+                                                if(u[i]==null){
+                                                    u[i]=cost-v[j];
+                                                }
+                                                else{
+                                                    v[j]=cost-u[i];
+                                                }
+                                            }
+                                        }
+                                    }
+                                    return [u,v];
+                                }
+
+                                function deg(allocation,mat,ui,vi){
+                                    var d =new Array(rows);
+                                    for(var i=0;i<rows;i++){
+                                        d[i]=new Array(cols);
+                                    }
+                                    for(var i =0;i<allocation.length;i++){
+                                        for(var j =0;j<allocation[i].length;j++){
+                                            if(allocation[i][j]!=0){
+                                                d[i][j]=allocation[i][j];
+                                            }
+                                            else{
+                                                var cost1= mat[i][j];
+                                                var d1 = cost1-(ui[i]+vi[j]);
+                                                d[i][j]=d1;
+                                            }
+ 
+                                        }
+ 
+                                    }
+ 
+                                    return d;
+ 
+                                }
+ 
+                                function get_possible_next_nodes(loop, not_visited) {
+ 
+                                    let last_node = loop[loop.length - 1];
+ 
+                                    let nodes_in_row = not_visited.filter(n => n[0] == last_node[0]);
+ 
+                                    let nodes_in_column = not_visited.filter(n => n[1] == last_node[1]);
+ 
+                                    if (loop.length < 2) {
+ 
+                                        return nodes_in_row.concat(nodes_in_column);
+ 
+                                    } else {
+ 
+                                        let prev_node = loop[loop.length - 2];
+ 
+                                        let row_move = prev_node[0] == last_node[0];
+ 
+                                        if (row_move) {
+ 
+                                            return nodes_in_column;
+ 
+                                        }
+ 
+                                        return nodes_in_row;
+ 
+                                    }
+ 
+                                }
+ 
+                                function get_loop(bv_positions,ev_position){
+ 
+                                    function inner(loop) {
+ 
+                                        if (loop.length > 3) {
+ 
+                                            let can_be_closed = get_possible_next_nodes(loop, [ev_position]).length == 1;
+ 
+                                            if (can_be_closed) {
+ 
+                                                return loop;
+ 
+                                            }
+ 
+                                        }
+ 
+                                        let not_visited = bv_positions.filter(n => !loop.includes(n));
+ 
+                                        let possible_next_nodes = get_possible_next_nodes(loop, not_visited);
+ 
+                                        for (let next_node of possible_next_nodes) {
+ 
+                                            let new_loop = inner(loop.concat([next_node]));
+ 
+                                            if (new_loop) {
+ 
+                                                return new_loop;
+ 
+                                            }
+ 
+                                        }
+ 
+                                    }
+ 
+                                    return inner([ev_position]);
+ 
+                                }
+ 
+                                function get_theta(bv_positions,loop){
+ 
+                                    var even=[];
+ 
+                                    var odd=[];
+ 
+                                    if(loop!=undefined){
+ 
+                                    for(var i=0;i<loop.length;i++){
+ 
+                                        if(i%2!=0){
+ 
+                                            even.push(loop[i]);
+ 
+                                        }else{
+ 
+                                            odd.push(loop[i]);
+ 
+                                        }
+ 
+                                    }
+ 
+                               
+ 
+ 
+ 
+                                    var theta=even[0][2];
+ 
+                                    for(var i=0;i<even.length;i++){
+ 
+                                        for(var j=0;j<even[i].length;j++)
+ 
+                                        if(even[i][2]<theta){
+ 
+                                            theta = even[i][2];
+ 
+                                        }
+ 
+                                    }for(var i=0;i<even.length;i++){
+ 
+                                        for(var j=0;j<even[i].length;j++){
+ 
+                                            if(j==2){
+ 
+                                            even[i][j]=even[i][j]-theta;
+ 
+                                            }
+ 
+                                        }
+ 
+                                    }
+ 
+                                   
+ 
+                                    for(var i=0;i<odd.length;i++){
+ 
+                                        for(var j=0;j<odd[i].length;j++){
+ 
+                                            if(j==2){
+ 
+                                            if(odd[i][j]>0){
+ 
+                                                odd[i][2]=odd[i][2]+theta;}
+ 
+                                                else{
+ 
+                                                odd[i][2]=theta;
+ 
+                                                }
+ 
+                                        }
+ 
+                                        }
+ 
+                                    }
+ 
+                                    let loop1=odd.concat(even);
+ 
+                                    let loop2 = bv_positions.concat(loop1)
+ 
+                                    var loop3 = loop2.filter((item, pos) => loop2.indexOf(item) === pos);
+ 
+                                    return loop3;
+ 
+                                }
+ 
+                                else{
+ 
+                                    return loop;
+ 
+                                }
+                               
+                                   
+ 
+                       
+                                                           }
+ 
+ 
+ 
+                                function get_result(d,loop3,nw1){
+ 
+                                    var all= [];
+ 
+                                    for(var i=0;i<rows;i++){
+ 
+                                        for(var j=0;j<cols;j++){
+ 
+                                                all.push([i,j,parseInt(nw1[i][j])]);
+ 
+                                           
+ 
+                                        }
+ 
+                                    }
+ 
+                                                    var conArray= new Array();
+ 
+ 
+ 
+                                   
+ 
+                                    for(var i =0;i<d.length;i++){
+ 
+                                        for(var j=0;j<d[i].length;j++){
+ 
+                                            conArray.push([i,j,d[i][j]]);
+ 
+                                        }
+ 
+                                    }
+ 
+ 
+ 
+                    for(var x = 0; x < conArray.length; x++){    
+ 
+                        for(var y = 0; y < loop3.length; y++){
+ 
+                   
+ 
+                          if(conArray[x][0] == loop3[y][0] && conArray[x][1] == loop3[y][1]){
+ 
+                            conArray[x][2]=loop3[y][2];
+ 
+                          }
+ 
+                        }
+ 
+                    }
+ 
+                    for(var x = 0; x < all.length; x++){    
+ 
+                        for(var y = 0; y < loop3.length; y++){
+ 
+                   
+ 
+                          if(all[x][0] == loop3[y][0] && all[x][1] == loop3[y][1]){
+ 
+                            all[x][2]=loop3[y][2];
+ 
+                          }
+ 
+                        }
+ 
+                    }var next=[];
+ 
+                    for(var i=0;i<all.length;i++){
+ 
+                        for(var j=0;j<all[i].length;j++){
+ 
+                            if(j==2){
+ 
+                                next.push(all[i][j]);
+ 
+                            }
+ 
+                        }
+ 
+                    }
+ 
+                    var next1=[];
+ 
+                    var i=0;
+ 
+                    for (l = next.length + 1; (i + cols) < l; i += cols) {
+ 
+                        next1.push(next.slice(i, i + cols));
+ 
+                    }
+
+                    var conArray1=new Array()
+                    for(var i=0;i<conArray.length;i++){
+ 
+                        for(var j=0;j<conArray[i].length;j++){
+ 
+                            if(j==2){
+                                conArray1.push(conArray[i][j]);
+                            }
+                        }
+                    }
+ 
+                    var conArray2=[];
+ 
+                    var i=0;
+ 
+                                for (l = conArray1.length + 1; (i + cols) < l; i += cols) {
+                                    conArray2.push(conArray1.slice(i, i + cols));
+                                }
+ 
+                                var result=0
+ 
+                                for(var i=0;i<rows;i++){
+ 
+                                    for(var j=0;j<cols;j++){
+ 
+                                        if(next1[i][j]!=undefined){
+ 
+                                            result = result+ (next1[i][j]*data[i][j]);
+ 
+                                        }
+ 
+                                    }
+ 
+                                }
+ 
+                                var nw7 = new Array();
+ 
+                                for(var i=0;i<rows;i++){
+ 
+                                    nw7[i]=new Array();
+ 
+                                }
+ 
+                                for(var i=0;i<rows;i++){
+ 
+                                    for(var j=0;j<cols;j++){
+ 
+                                        if(next1[i][j]!=undefined){
+ 
+                                            nw7[i][j]=next1[i][j];
+ 
+                                        }
+ 
+                                        else {
+ 
+                                            nw7[i][j]=0;
+ 
+                                        }
+ 
+                                    }
+ 
+                                }
+ 
+                                var nwfinal = new Array();
+ 
+                                for(var i=0;i<rows;i++){
+ 
+                                    nwfinal[i]=new Array();
+ 
+                                }
+ 
+                                for(var i=0;i<rows;i++){
+ 
+                                    for(var j=0;j<cols;j++){
+ 
+                                        if(nw7[i][j]==0)
+ 
+                                        nwfinal[i][j] = undefined;
+ 
+                                        else
+ 
+                                        nwfinal[i][j]= nw7[i][j];
+ 
+                                    }
+ 
+                                }
+ 
+                                var nwfinal1 = new Array();
+ 
+                                for(var i=0;i<rows;i++){
+ 
+                                    nwfinal1[i]=new Array();
+ 
+                                }
+ 
+                                for(var i=0;i<rows;i++){
+ 
+                                    for(var j=0;j<cols;j++){
+ 
+                                        if(nwfinal[i][j]==undefined)
+ 
+                                        nwfinal1[i][j] = 0;
+ 
+                                        else
+ 
+                                        nwfinal1[i][j]= nwfinal[i][j];
+ 
+                                    }
+ 
+                                }
+                                   
+ 
+                                console.log(nwfinal1);
+ 
+                                console.log(result);
+ 
+                                return [nwfinal1,result];           }
+ 
+ 
+ 
+                                function neg(d)
+ 
+                                {
+ 
+                                    var neg=0;
+ 
+                                    for(var i=0;i<rows;i++){
+ 
+                                        for(var j=0;j<cols;j++){
+ 
+                                            if(d[i][j]<0){
+ 
+                                            return true;
+ 
+                                            }
+ 
+                                            else{
+ 
+                                                return false;
+ 
+                                            }
+ 
+                                        }
+ 
+                                    }
+ 
+                            }
+
+
+
+
+
+
+                            function optimal1(nw1,result1,data){
+ 
+                                let row=0;
+ 
+                                let u = optimal(nw1, data)[0];//calculating u and v
+ 
+                           let v = optimal(nw1,data)[1];
+ 
+                           console.log(u,v);
+ 
+                           console.log(result1);
+ 
+                           
+ 
+                           
+ 
+                           let d=deg(nw1, data, u,v); //calculating d matrix
+ 
+                           console.log(u,v,d);
+ 
+                           //let min = minimum(d);
+ 
+                           var minimum =  d[0][0];
+ 
+                        for(var i =0;i<d.length;i++){
+ 
+                            for(var j =0;j<d[i].length;j++){
+ 
+                                if(d[i][j]<minimum){
+ 
+                                    minimum = d[i][j];
+ 
+                                }
+ 
+                            }}
+ 
+                            //finding positions of minimum element
+ 
+                            var ev_positions = [];
+ 
+                            for(var i =0;i<d.length;i++){
+ 
+                                for(var j =0;j<d[i].length;j++){
+ 
+                                    if(d[i][j]==minimum){
+ 
+                                        ev_positions.push(i);
+ 
+                                        ev_positions.push(j);
+ 
+                                        ev_positions.push(d[i][j]);
+ 
+                                    }
+ 
+                                }
+ 
+                            }
+ 
+                            //finding positions of north-west matrix
+ 
+                            var bv_positions=new Array();
+ 
+                            for(var i=0;i<rows;i++){
+ 
+                                for(var j=0;j<cols;j++){
+ 
+                                    if(nw1[i][j]!=0){
+ 
+                                        bv_positions.push([i,j,nw1[i][j]]);
+ 
+                                    }
+                                }
+                            }
+ 
+                            let loop = get_loop(bv_positions, ev_positions);//finding loop
+ 
+                            let theta = get_theta(bv_positions,loop);//finding values of allocated loop after adding minimum element
+ 
+                            let nextfeasibleArray = get_result(d,theta,nw1)[0];
+ 
+                            let result = get_result(d,theta,nw1)[1];//finding result
+ 
+                            return [d,nextfeasibleArray,result];
+                }
+ 
+                        if((rows+cols-1)==count){
+                            let looping=0;
+                            var i=0;
+                            var result_final =[];
+                            var result_final_arr =[];
+                            var final_arr = optimal1(nw1,looping,data)[1];
+                            var results=optimal1(nw1,looping,data)[2];
+                            var d =optimal1(nw1,looping,data)[0];
+                            result_final.push(optimal1(nw1,looping,data)[2]);
+                            result_final_arr.push(optimal1(nw1,looping,data)[1]);
+                            console.log(result_final);
+                            console.log(result_final_arr);
+ 
+                            while(i<3){
+                                var final_arr = optimal1(final_arr,results,data)[1];
+                            var results=optimal1(final_arr,results,data)[2];
+                            console.log("results"+results);
+                                result_final.push(optimal1(final_arr,results,data)[2]);
+                                result_final_arr.push(optimal1(nw1,looping,data)[1]);
+                                var d =optimal1(nw1,looping,data)[0];
+                                i++;
+                            
+                            }
+
+
+                            let min = Math.min.apply(null, result_final);
+                            console.log(min);
+
+
+
+
+
+
+                         $("#result").append("<br/><b style='color:white;'>Next feasible Solution are "+result_final+" </b> <br/><br/>");
+ 
+                         $("#result").append("<br/><b style='color:white;'>Allocation matrix is :</b> <br/><br/>");
+ 
+                        var printValue =0;
+                        var table='<table id="table4">';
+                            $("#result").append(table);
+                        for (var i = 0; i < rows; i++) {
+                            table='<tr id=\"row4'+i+'\"></tr>';
+                            $("#result").append(table);
+                            for (var j = 0; j < cols; j++) {
+                                table='<td>' + final_arr[i][j]+ '</td>';                                     
+                                $("#row4"+i).append(table);
+                            }
+                        }
+                        table='</table>';
+                         $("#result").append("<br/><b style='color:white;'>Optimal Solution is </b>"+min+" <br/><br/>");
+                         }
+                                            else{
+ 
+                                                $("#result").append("<br/><b style='color:red;'>It is degenerate problem we cannot proceed further</b><br/><br/>");
+                                            }
+            }
+            else{
+                $("#result").append("<br/><b style='color:red;'>Supply is not equal to demand</b><br/><br/>");
+                //location.reload();
+            }
+            });
+            });
+        </script>
+        </body>
+        </html>

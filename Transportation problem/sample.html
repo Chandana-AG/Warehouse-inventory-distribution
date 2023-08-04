@@ -1,0 +1,1102 @@
+<!Doctype html>
+
+<html lang="en" dir="ltr">
+
+    <head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <link rel="shortcut icon" type="image/x-icon" href="warehouse logo.jpg">
+        <title>Warehouse Inventory Distribution</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="a.css" rel="stylesheet">
+
+    </head>
+
+    <body>
+        <div>
+            <nav>
+            <label class="logo">Warehouse Inventory Distribution</label>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index copy.html">Transporation problem calculator</a></li>
+                <li><a href="sample.html">Sampled sum</a></li>
+            </ul>
+            </nav>
+        </div><br/>
+
+        <h1>Transportation Problem Calculation</h1><br/>
+
+        <h2> The distance matrix : </h2><br/>
+
+        <table style="width: 20%;">
+
+            <tbody>
+                <tr>
+                    <th>Warehouse/ Shrowroom</th>
+                    <th>Jaynagar</th>
+                    <th>Indiranagar</th>
+                    <th>JPnagar</th>
+                    <th>Sadashivnagar</th>
+                    <th>Rajajinagar</th>
+                    <th>SUPPLY</th>
+                </tr>
+
+            <tr style="height: 10%;">
+                <th>Nelmangala</th>
+
+                <th>37</th>
+
+                <th>34</th>
+
+                <th>46</th>
+
+                <th>25</th>
+
+                <th>23</th>
+
+                <th>100</th>
+
+            </tr>
+
+            <tr>
+                <th>Whitefield</th>
+
+                <th>24</th>
+
+                <th>15</th>
+
+                <th>24</th>
+
+                <th>28</th>
+
+                <th>26</th>
+
+                <th>125</th>
+
+            </tr>
+
+            <tr>
+                <th>Electronics City</th>
+
+                <th>17</th>
+
+                <th>20</th>
+
+                <th>16</th>
+
+                <th>23</th>
+
+                <th>25</th>
+                <th>115</th>
+
+            </tr>
+
+            <tr>
+                <th>Bidadi</th>
+
+                <th>37</th>
+
+                <th>38</th>
+
+                <th>34</th>
+
+                <th>47</th>
+
+                <th>32</th>
+                <th>175</th>
+
+            </tr>
+
+            <tr>
+                <th>Hoskote</th>
+
+                <th>31</th>  
+
+                <th>21</th>
+
+                <th>34</th>
+
+                <th>34</th>
+
+                <th>38</th>
+                <th>160</th>
+
+            </tr>
+            <tr>
+                <th>DEMAND</th>
+                <th>105</th>
+                <th>190</th>
+                <th>146</th>
+                <th>120</th>
+                <th>114</th>
+            </tr>
+
+            </tbody>
+
+        </table><br/>
+
+        <h3>
+
+        Since supply = demand, this is balanced transportation problem<br/><br/>
+
+        IBFS Solution :</h3>
+
+        <table style="width: 20%;">
+
+            <tbody>
+
+            <tr style="height: 10%;">
+
+                <th>100</th>
+
+                <th>0</th>
+
+                <th>0</th>
+
+                <th>0</th>
+
+                <th>0</th>
+
+            </tr>
+
+            <tr>
+
+                <th>5</th>
+
+                <th>120</th>
+
+                <th>0</th>
+
+                <th>0</th>
+
+                <th>0</th>
+
+            </tr>
+
+            <tr>
+
+                <th>0</th>
+
+                <th>70</th>
+
+                <th>45</th>
+
+                <th>0</th>
+
+                <th>0</th>
+
+            </tr>
+
+            <tr>
+
+                <th>0</th>
+
+                <th>0</th>
+
+                <th>101</th>
+
+                <th>74</th>
+
+                <th>0</th>
+
+            </tr>
+
+            <tr>
+
+                <th>0</th>
+
+                <th>0</th>
+
+                <th>0</th>
+
+                <th>46</th>
+
+                <th>114</th>
+            </tr>
+
+            </tbody>
+
+        </table>
+
+        <h3> IBFS = 100(37) + 5(24) + 120(15) + 70(20) + 45(16) + 101(34) + 74(47) + 46(34) + 114(38)= 20548<br/><br/>
+
+            Here, the number of allocated cells = 9 is equal to m + n - 1 = 5 + 5 - 1 = 9 <br/>
+
+           ∴ This solution is non-degenerate<br/><br/>
+
+           Optimality test :<br/><br/>
+
+           Calculate the values of ui And vj<br/>
+
+           Using formula Cij = ui + vj, where Cij is calculated only for allocation cells<br/><br/>
+
+           ui: [0,-13,-8,10,-3]<br/>
+
+           vj: [37,28,24,37,41]<br/><br/>
+
+           Now, calculate dij for non-allocated cells<br/>
+
+           By using dij = Cij - (ui = vj)<br/>
+
+        Net Evaluation matrix :</h3>
+
+           <table style="width: 20%;">
+
+            <tbody>
+
+            <tr>
+
+                <th></th>
+
+                <th>6</th>
+
+                <th>22</th>
+
+                <th>-12</th>
+
+                <th>-18</th>
+
+            </tr>
+
+            <tr>
+
+                <th></th>
+
+                <th></th>
+
+                <th>13</th>
+
+                <th>4</th>
+
+                <th>-2</th>
+
+            </tr>
+
+            <tr>
+
+                <th>-12</th>
+
+                <th></th>
+
+                <th></th>
+
+                <th>-6</th>
+
+                <th>-8</th>
+
+            </tr>
+
+            <tr>
+
+                <th>-10</th>
+
+                <th>0</th>
+
+                <th></th>
+
+                <th></th>
+
+                <th>-19</th>
+
+            </tr>
+
+            <tr>
+
+                <th>-3</th>
+
+                <th>-4</th>
+
+                <th>13</th>
+
+                <th></th>
+
+                <th></th>
+            </tr>
+
+            </tbody>
+
+ 
+
+        </table>
+
+        <h3>In the net evaluation matrix if there is a presence of negative entry, then solution under test is not optimal. Hence we proceed for optimality<br/>
+
+            From the largest negative entry draw a loop in such a way that the corners of the loop lie in those cells where allocations is made. Then, alternate corners of the loop called it as +theta and -theta starting from largest negative entry<br/>
+
+            Find out the allocation made in -theta entries and pick up the minimum. Here, minimum allocated value among all negative position (-) on closed path = 74<br/>
+
+            Substract 74 from all (-) and Add it to all (+)<br/><br/>
+
+        Allocation matrix : </h3>
+
+        <table style="width: 20%;">
+
+            <tbody>
+
+            <tr>
+
+                <th>100</th>
+
+                <th></th>
+
+                <th></th>
+
+                <th></th>
+
+                <th></th>
+
+            </tr>
+
+            <tr>
+
+                <th>5</th>
+
+                <th>120</th>
+
+                <th></th>
+
+                <th></th>
+
+                <th></th>
+
+            </tr>
+
+            <tr>
+
+                <th></th>
+
+                <th>70</th>
+
+                <th>45</th>
+
+                <th></th>
+
+                <th></th>
+
+            </tr>
+
+            <tr>
+
+                <th></th>
+
+                <th></th>
+
+                <th>101</th>
+
+                <th></th>
+
+                <th>74</th>
+
+            </tr>
+
+            <tr>
+
+                <th></th> 
+
+                <th></th>
+
+                <th></th>
+
+                <th>120</th>
+
+                <th>40</th>
+            </tr>
+
+            </tbody>
+
+ 
+
+        </table>
+
+        <h3>The next feasible solution is : 100(37) + 5(24) + 120(15) + 70(20) + 45(16) + 101(34) + 74(32) + 120(34) + 40(38)= 19142<br/><br/>
+
+            Again we will calculate Cij and dij until no negative value is encounter in dij.<br/><br/>
+
+            Next uj: [0,-13,-8,10,16]
+
+            vj: [37,28,24,18,22]<br/><br/>
+
+            Net Evaluation matrix :</h3>
+
+            <table style="width: 20%;">
+
+                <tbody>
+
+                <tr>
+
+                    <th></th>
+
+                    <th>6</th>
+
+                    <th>22</th>
+
+                    <th>7</th>
+
+                    <th>1</th>
+
+                </tr>
+
+                <tr>
+
+                    <th></th>
+
+                    <th></th>
+
+                    <th>13</th>
+
+                    <th>23</th>
+
+                    <th>17</th>
+
+                </tr>
+
+                <tr>
+
+                    <th>-12</th>
+
+                    <th></th>
+
+                    <th></th>
+
+                    <th>13</th>
+
+                    <th>11</th>
+
+                </tr>
+
+                <tr>
+
+                    <th>-10</th>
+
+                    <th>0</th>
+
+                    <th></th>
+
+                    <th>19</th>
+
+                    <th></th>
+
+                </tr>
+
+                <tr>
+
+                    <th>-22</th>
+
+                    <th>-23</th>
+
+                    <th>-6</th>
+
+                    <th></th>
+
+                    <th></th>
+                </tr>
+
+                </tbody>
+
+            </table>
+
+            <h3>Since, there is a presence of negative entry, solution under test is not optimal. Hence we proceed for optimality<br/>
+
+                From the largest negative entry draw a loop in such a way that the corners of the loop lie in those cells where allocations is made. Then, alternate corners of the loop called it as +theta and -theta starting from largest negative entry<br/>
+
+                Find out the allocation made in -theta entries and pick up the minimum. Here, minimum allocated value among all negative position (-) on closed path = 40<br/>
+
+                Substract 40 from all (-) and Add it to all (+)<br/><br/>
+
+            Allocation matrix : </h3>
+
+            <table style="width: 20%;">
+
+                <tbody>
+
+                <tr>
+
+                    <th>100</th>
+
+                    <th></th>
+
+                    <th></th>
+
+                    <th></th>
+
+                    <th></th>
+
+                </tr>
+
+                <tr>
+
+                    <th>5</th>
+
+                    <th>120</th>
+
+                    <th></th>
+
+                    <th></th>
+
+                    <th></th>
+
+                </tr>
+
+                <tr>
+
+                    <th></th>
+
+                    <th>30</th>
+
+                    <th>85</th>
+
+                    <th></th>
+
+                    <th></th>
+
+                </tr>
+
+                <tr>
+
+                    <th></th>
+
+                    <th></th>
+
+                    <th>61</th>
+
+                    <th></th>
+
+                    <th>114</th>
+
+                </tr>
+
+                <tr>
+
+                    <th></th>
+
+                    <th>40</th>
+
+                    <th></th>
+
+                    <th>120</th>
+
+                    <th></th>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+            <h3>The next feasible solution is : 100(37) + 5(24) + 120(15) + 30(20) + 85(16) + 61(34) + 114(32) + 40(21) + 120(34)= 18222<br/><br/>
+
+                Again we will calculate Cij and dij until no negative value is encounter in dij.<br/><br/>
+    
+                Next uj: [0,-13,-8,10,-7]
+    
+                vj: [37,28,24,41,22]<br/><br/>
+    
+                Net Evaluation matrix :</h3>
+
+                <table style="width: 20%;">
+
+                    <tbody>
+    
+                    <tr>
+    
+                        <th></th>
+    
+                        <th>6</th>
+    
+                        <th>22</th>
+    
+                        <th>-16</th>
+    
+                        <th>1</th>
+    
+                    </tr>
+    
+                    <tr>
+    
+                        <th></th>
+    
+                        <th></th>
+    
+                        <th>13</th>
+    
+                        <th>0</th>
+    
+                        <th>17</th>
+    
+                    </tr>
+    
+                    <tr>
+    
+                        <th>-12</th>
+    
+                        <th></th>
+    
+                        <th></th>
+    
+                        <th>-10</th>
+    
+                        <th>11</th>
+    
+                    </tr>
+    
+                    <tr>
+    
+                        <th>-10</th>
+    
+                        <th>0</th>
+    
+                        <th></th>
+    
+                        <th>-4</th>
+    
+                        <th></th>
+    
+                    </tr>
+    
+                    <tr>
+    
+                        <th>1</th>
+    
+                        <th></th>
+    
+                        <th>17</th>
+    
+                        <th></th>
+    
+                        <th>23</th>
+                    </tr>
+    
+                    </tbody>
+    
+                </table>
+                <h3>Since, there is a presence of negative entry<br/>
+
+                    Again draw a loop. Here, minimum allocated value among all negative position (-) on closed path = 100<br/>
+    
+                    Substract 100 from all (-) and Add it to all (+)<br/><br/>
+
+                    Allocation matrix : </h3>
+
+            <table style="width: 20%;">
+
+                <tbody>
+
+                <tr>
+
+                    <th></th>
+
+                    <th></th>
+
+                    <th></th>
+
+                    <th>100</th>
+
+                    <th></th>
+
+                </tr>
+
+                <tr>
+
+                    <th>105</th>
+
+                    <th>20</th>
+
+                    <th></th>
+
+                    <th></th>
+
+                    <th></th>
+
+                </tr>
+
+                <tr>
+
+                    <th></th>
+
+                    <th>30</th>
+
+                    <th>85</th>
+
+                    <th></th>
+
+                    <th></th>
+
+                </tr>
+
+                <tr>
+
+                    <th></th>
+
+                    <th></th>
+
+                    <th>61</th>
+
+                    <th></th>
+
+                    <th>114</th>
+
+                </tr>
+
+                <tr>
+
+                    <th></th>
+
+                    <th>140</th>
+
+                    <th></th>
+
+                    <th>20</th>
+
+                    <th></th>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+            <h3>The next feasible solution is : 100(25) + 105(24) + 20(15) + 30(20) + 85(16) + 61(34) + 114(32) + 140(21) + 20(34)= 16622<br/><br/>
+
+                Again we will calculate Cij and dij until no negative value is encounter in dij.<br/><br/>
+    
+                Next uj: [0,3,8,26,9]
+    
+                vj: [21,12,8,25,6]<br/><br/>
+    
+                Net Evaluation matrix :</h3>
+                <table style="width: 20%;">
+
+                    <tbody>
+    
+                    <tr>
+    
+                        <th>16</th>
+    
+                        <th>22</th>
+    
+                        <th>38</th>
+    
+                        <th></th>
+    
+                        <th>17</th>
+    
+                    </tr>
+    
+                    <tr>
+    
+                        <th></th>
+    
+                        <th></th>
+    
+                        <th>13</th>
+    
+                        <th>0</th>
+    
+                        <th>17</th>
+    
+                    </tr>
+    
+                    <tr>
+    
+                        <th>-12</th>
+    
+                        <th></th>
+    
+                        <th></th>
+    
+                        <th>-10</th>
+    
+                        <th>11</th>
+    
+                    </tr>
+    
+                    <tr>
+    
+                        <th>-10</th>
+    
+                        <th>0</th>
+    
+                        <th></th>
+    
+                        <th>-4</th>
+    
+                        <th></th>
+    
+                    </tr>
+    
+                    <tr>
+    
+                        <th>1</th>
+    
+                        <th></th>
+    
+                        <th>17</th>
+    
+                        <th></th>
+    
+                        <th>23</th>
+                    </tr>
+    
+                    </tbody>
+    
+                </table>
+                <h3>Since, there is a presence of negative entry<br/>
+
+                    Again draw a loop. Here, minimum allocated value among all negative position (-) on closed path = 30<br/>
+    
+                    Substract 30 from all (-) and Add it to all (+)<br/><br/>
+
+                    Allocation matrix : </h3>
+                    <table style="width: 20%;">
+
+                        <tbody>
+        
+                        <tr>
+        
+                            <th></th>
+        
+                            <th></th>
+        
+                            <th></th>
+        
+                            <th>100</th>
+        
+                            <th></th>
+        
+                        </tr>
+        
+                        <tr>
+        
+                            <th>75</th>
+        
+                            <th>50</th>
+        
+                            <th></th>
+        
+                            <th></th>
+        
+                            <th></th>
+        
+                        </tr>
+        
+                        <tr>
+        
+                            <th></th>
+        
+                            <th>30</th>
+        
+                            <th></th>
+        
+                            <th>85</th>
+        
+                            <th></th>
+        
+                        </tr>
+        
+                        <tr>
+        
+                            <th></th>
+        
+                            <th></th>
+        
+                            <th>61</th>
+        
+                            <th></th>
+        
+                            <th>114</th>
+        
+                        </tr>
+        
+                        <tr>
+        
+                            <th></th>
+        
+                            <th>140</th>
+        
+                            <th></th>
+        
+                            <th>20</th>
+        
+                            <th></th>
+        
+                        </tr>
+        
+                        </tbody>
+        
+                    </table>
+                    <h3>The next feasible solution is : 100(25) + 75(24) + 50(15) + 30(17) + 85(16) + 61(34) + 114(32) + 140(21) + 20(34)= 16262<br/><br/>
+                        Again we will calculate Cij and dij until no negative value is encounter in dij.<br/><br/>
+    
+                Next uj: [0,3,-4,14,9]
+    
+                vj: [21,12,20,25,18]<br/><br/>
+    
+                Net Evaluation matrix :</h3>
+                <table style="width: 20%;">
+
+                    <tbody>
+    
+                    <tr>
+    
+                        <th>16</th>
+    
+                        <th>22</th>
+    
+                        <th>26</th>
+    
+                        <th></th>
+    
+                        <th>5</th>
+    
+                    </tr>
+    
+                    <tr>
+    
+                        <th></th>
+    
+                        <th></th>
+    
+                        <th>1</th>
+    
+                        <th>0</th>
+    
+                        <th>5</th>
+    
+                    </tr>
+    
+                    <tr>
+    
+                        <th></th>
+    
+                        <th>12</th>
+    
+                        <th></th>
+    
+                        <th>2</th>
+    
+                        <th>11</th>
+    
+                    </tr>
+    
+                    <tr>
+    
+                        <th>2</th>
+    
+                        <th>12</th>
+    
+                        <th></th>
+    
+                        <th>8</th>
+    
+                        <th></th>
+    
+                    </tr>
+    
+                    <tr>
+    
+                        <th>1</th>
+    
+                        <th></th>
+    
+                        <th>5</th>
+    
+                        <th></th>
+    
+                        <th>11</th>
+                    </tr>
+    
+                    </tbody>
+    
+                </table>
+
+            <h3>Since all dij≥0.<br/>
+
+          So final optimal solution is arrived.<br/><br/>
+
+         Result :</h3>
+
+         <table style="width: 20%;">
+
+            <tbody>
+
+            <tr>
+
+                <th></th>
+
+                <th></th>
+
+                <th></th>
+
+                <th>100</th>
+
+                <th></th>
+
+            </tr>
+
+            <tr>
+
+                <th>75</th>
+
+                <th>50</th>
+
+                <th></th>
+
+                <th></th>
+
+                <th></th>
+
+            </tr>
+
+            <tr>
+
+                <th></th>
+
+                <th>30</th>
+
+                <th></th>
+
+                <th>85</th>
+
+                <th></th>
+
+            </tr>
+
+            <tr>
+
+                <th></th>
+
+                <th></th>
+
+                <th>61</th>
+
+                <th></th>
+
+                <th>114</th>
+
+            </tr>
+
+            <tr>
+
+                <th></th>
+
+                <th>140</th>
+
+                <th></th>
+
+                <th>20</th>
+
+                <th></th>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+        <h3>Optimal solution : 100(25) + 75(24) + 50(15) + 30(17) + 85(16) + 61(34) + 114(32) + 140(21) + 20(34)= 16262</h3><br/><br/>
+
+ 
+
+    </body>
+
+    </html>
